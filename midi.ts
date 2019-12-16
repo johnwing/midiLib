@@ -86,29 +86,6 @@ namespace midi {
         setTransport(send)
     }
 
-    /**
-     * Send human readable MIDI messages via serial
-     */
-    //% blockId=midi_serial_transport block="midi use serial"
-    //% weight=1 blockGap=8
-    //% group=Transports
-    export function useSerial() {
-        function send(data: Buffer): void {
-            // waiting for beta
-            //const buf = pins.createBuffer(data.length);
-            //for (let i = 0; i < data.length; ++i)
-            //    buf[i] = data[i];
-            // serial.writeBuffer(buf);
-            serial.writeString("midi:")
-            for (let i = 0; i < data.length; ++i) {
-                if (i > 0) serial.writeString(",");
-                serial.writeNumber(data[i]);
-            }
-            serial.writeLine("");
-        }
-        setTransport(send)
-    }
-
     let channels: MidiController[];
     /**
      * Gets the MIDI controller for a given channel.
